@@ -41,8 +41,8 @@ bgnotify () { ## args: (title, subtitle)
       [[ "$TERM_PROGRAM" == 'iTerm.app' ]] && term_id='com.googlecode.iterm2';
       [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]] && term_id='com.apple.terminal';
       ## now call terminal-notifier, (hopefully with $term_id!)
-      [ -z "$term_id" ] && terminal-notifier -message "$2" -title "$1" >/dev/null ||
-      terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" >/dev/null
+      [ -z "$term_id" ] && terminal-notifier -message "$2" -title "$1" 2&>/dev/null ||
+      terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" 2&>/dev/null
       return
     elif hash growlnotify 2>/dev/null; then #osx growl
       growlnotify -m "$1" "$2"
